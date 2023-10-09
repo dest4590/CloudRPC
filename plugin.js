@@ -17,8 +17,37 @@
 
     var attempts = 0
 
-    var updateData = function() {
+    var nofitication = function() {
+        var grtDiv = document.createElement("div");
+        grtDiv.innerHTML = `
+            <div id="gritter-notice-wrapper" class="top-right" bis_skin_checked="1">
+                <div id="gritter-item-1" class="gritter-item-wrapper oneLine" bis_skin_checked="1">
+                    <div class="gritter-top" bis_skin_checked="1"></div>
+                    <div class="gritter-item" bis_skin_checked="1">
+                        <img src="https://www.google.com/s2/favicons?sz=256&domain=soundcloud.com" class="gritter-image"/>
+                        <div class="gritter-with-image" bis_skin_checked="1">
+                            <span class="gritter-title">CloudRPC Loaded!</span>
+                            <p>By dest4590.</p>
+                        </div>
+                        <div style="clear: both" bis_skin_checked="1"></div>
+                    </div>
+                    <div class="gritter-bottom" bis_skin_checked="1"></div>
+                </div>
+            </div>
+        `;
 
+        document.body.appendChild(grtDiv);
+
+        function fadeOutElement() {
+            var element = document.getElementById("gritter-notice-wrapper");
+            element.style.transition = "opacity 1s ease-in-out";
+            element.style.opacity = 0;
+        }
+
+        setTimeout(fadeOutElement, 2000);
+    }
+
+    var updateData = function() {
         var xhr = new XMLHttpRequest();
         console.log("Send info to server")
         var url = "http://localhost:9888/update"
@@ -34,6 +63,12 @@
             }
         });
 
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+              console.log(xhr.response);
+            }
+        };
+
         var title = document.title
         var duration = document.querySelectorAll('div.playbackTimeline__duration span[aria-hidden="true"]')[0].innerHTML
         var current = document.querySelectorAll('div.playbackTimeline__timePassed span[aria-hidden="true"]')[0].innerHTML
@@ -45,6 +80,8 @@
         xhr.send(data);
     }
 
-    var sendInterval = window.setInterval(updateData, 10000);
+    setTimeout(nofitication, 2000);
+
+    var sendInterval = window.setInterval(updateData, 10000)
     updateData();
 })();
