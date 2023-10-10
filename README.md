@@ -12,7 +12,7 @@
 - [x] Easier installation
 
 ### Installation
-* Download server from [latest release](https://github.com/dest4590/CloudRPC/releases/latest), and run it
+* Download server from [latest release](https://github.com/dest4590/CloudRPC/releases/latest) (windows/linux), and run it
 * Install [tampermonkey](https://www.tampermonkey.net/ "Tampermonkey"), create a new script and copy everything from [plugin.js](https://raw.githubusercontent.com/dest4590/CloudRPC/main/plugin.js) into the new script, save and go to soundcloud
 * If you see the notification that CloudRPC is running, everything is working!
 
