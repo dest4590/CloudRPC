@@ -1,4 +1,6 @@
-# CloudRPC
+<p align=center><img src="https://github.com/dest4590/CloudRPC/assets/80628386/4d201d99-808f-48e8-b81d-9dba27e558de" width=350 align=center></p>
+
+<h1 align=center>CloudRPC</h1>
 
 ## Simple program that can share your current playing song to discord
 
