@@ -20,6 +20,8 @@ Update: `git reset --hard HEAD && git clean -f -d && git pull`, also you need to
 
 ![image](https://github.com/dest4590/CloudRPC/assets/80628386/49cf9474-8698-4518-84d6-42245bbbe08f)
 
+![image](https://github.com/dest4590/CloudRPC/assets/80628386/a1952acb-5ebb-404c-804d-050e6a813008)
+
 ## Pros
 * Low memory usage:
 
