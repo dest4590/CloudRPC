@@ -4,6 +4,13 @@
 
 ## Simple program that can share your current playing song to discord
 
+### Features
+- [x] Show current song in Discord
+- [x] Show whether the song is liked or not
+- [x] Showing stations
+- [x] How much time is left until the end (works even with an hour)
+- [ ] Easier installation
+
 ### Installation
 
 * Sure you install git and python: 
