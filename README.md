@@ -40,3 +40,8 @@ You need only 1 command and script to use it
 * Python, yes, it's pretty slow, but it's suitable for such purposes, and it's easy to install
 * High ram consumption from the server, maybe 30mb is a lot for someone
 * Sometimes bugs can occur, please create an [issue](https://github.com/dest4590/CloudRPC/issues) so I can fix it
+
+## DISCLAIMER!
+By using this app you take responsibility for your SoundCloud/Discord account for yourself
+
+You can't get banned for nothing (my program doesn't violate Discord and SoundCloud TOS)
