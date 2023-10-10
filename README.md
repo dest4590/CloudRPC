@@ -1,13 +1,57 @@
-# CloudRPC
+<p align=center><img src="https://github.com/dest4590/CloudRPC/assets/80628386/4d201d99-808f-48e8-b81d-9dba27e558de" width=350 align=center></p>
+
+<h1 align=center>CloudRPC</h1>
 
 ## Simple program that can share your current playing song to discord
 
+### Features
+- [x] Show current song in Discord
+- [x] Show whether the song is liked or not
+- [x] Showing stations
+- [x] How much time is left until the end (works even with an hour)
+- [ ] Easier installation
+
 ### Installation
 
-* Sure you install git: 
+* Sure you install git and python: 
 * Enter this command: `git clone https://github.com/dest4590/CloudRPC.git && cd CloudRPC && pip install flask flask_cors pypresence && python server.py`
 * Install [tampermonkey](https://www.tampermonkey.net/ "Tampermonkey"), create a new script and copy everything from [plugin.js](https://raw.githubusercontent.com/dest4590/CloudRPC/main/plugin.js) into the new script, save and go to soundcloud
 * If you see the notification that CloudRPC is running, everything is working!
 
 
-Update: `git reset --hard HEAD && git clean -f -d && git pull`
+Update: `git reset --hard HEAD && git clean -f -d && git pull`, also you need to update script for tampermonkey!
+
+## Screenshots:
+
+![image](https://github.com/dest4590/CloudRPC/assets/80628386/52e35842-5905-489e-9b54-eea08515873e)
+
+![image](https://github.com/dest4590/CloudRPC/assets/80628386/49cf9474-8698-4518-84d6-42245bbbe08f)
+
+![image](https://github.com/dest4590/CloudRPC/assets/80628386/a1952acb-5ebb-404c-804d-050e6a813008)
+
+![image](https://github.com/dest4590/CloudRPC/assets/80628386/82a42568-e89a-4712-bf6a-4e4b56649564)
+
+
+## Pros
+* Low memory usage:
+
+  Tampermonkey: 48,900K, 1.6 CPU (when sending request)
+
+  Python server: 24MB, 0.3 CPU (when processing a request and changing the RPC)  
+
+  > Tested on Ryzen 5 3500U with 10gb ram
+
+* Easy to use:
+You need only 1 command and script to use it
+
+* Working on Windows/Linux (MacOS not tested)
+
+## Cons
+* Python, yes, it's pretty slow, but it's suitable for such purposes, and it's easy to install
+* High ram consumption from the server, maybe 30mb is a lot for someone
+* Sometimes bugs can occur, please create an [issue](https://github.com/dest4590/CloudRPC/issues) so I can fix it
+
+## DISCLAIMER!
+By using this app you take responsibility for your SoundCloud/Discord account for yourself
+
+You can't get banned for nothing (my program doesn't violate Discord and SoundCloud TOS)
