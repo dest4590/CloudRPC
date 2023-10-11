@@ -1,19 +1,20 @@
 from pypresence import Presence, DiscordNotFound
+from .data import logger
 
 class CloudRPC:
     client_id = 1140224106009206864
     RPC = Presence(client_id)
 
     def connectRPC(self):
-        print('Connecting to Discord...')
+        logger.info('Connecting to Discord...')
         
         try: 
             self.RPC.connect()
         except DiscordNotFound:
-            print('Please sure you started discord!')
+            logger.error('Please sure you started discord!')
             quit(0)
 
-        print('Connected!')
+        logger.info('Connected!')
 
 
     def updateRPC(self, state: str, details: str, large_image: str, link: str, end: int, playing: bool, liked: bool, station):
@@ -25,6 +26,7 @@ class CloudRPC:
     
 
         else:
-            self.RPC.update(state = state, details=details, large_image=large_image, large_text='Komaru', small_image='cloudrpc_logo', small_text='CloudRPC')
-    
-        print('Updated RPC')
+            self.RPC.update(state = state, details=details, large_image=large_image, large_text='Cat', small_image='cloudrpc_logo', small_text='CloudRPC')
+
+
+        logger.info('Updated RPC')

@@ -1,0 +1,3 @@
+pypresence 
+flask 
+flask_cors
