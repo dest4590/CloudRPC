@@ -22,6 +22,9 @@ def timeToSeconds(time: str):
         return minutes * 60 + seconds
 
 class CloudRPCServer:
+    def __init__(self, debug):
+        self.debug = debug
+
     app = Flask('CloudRPC Server')
     CORS(app)
 
@@ -34,11 +37,9 @@ class CloudRPCServer:
 
         logger.info('RPC update request')
 
-        logger.debug(data)
-
         try: 
             if data['playing']:
-                rpc.updateRPC(str(data['song']).split(' by ')[1], str(data['song']).split(' by ')[0], data['artwork'], data['link'], time.time() +  timeToSeconds(data['duration']) - timeToSeconds(data['current']), True, data['liked'], data['station'])
+                rpc.updateRPC(str(data['song']).split(' by ')[1], str(data['song']).split(' by ')[0], data['artwork'], data['link'], time.time() +  timeToSeconds(data['duration']) - timeToSeconds(data['current']), True, data['liked'], data['station'], str(data['volume']))
             
             else:
                 assets = cats.getRandom()
@@ -51,4 +52,4 @@ class CloudRPCServer:
             return 500, 'Error: ' + str(e)
 
     def run(self):
-        self.app.run('127.0.0.1', '9888', False)
+        self.app.run('127.0.0.1', '9888', self.debug)

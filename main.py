@@ -1,3 +1,3 @@
 import CloudRPC
 
-CloudRPC.CloudRPCServer().run()
+CloudRPC.CloudRPCServer(False).run()
