@@ -8,6 +8,7 @@
 - [x] Show current song in Discord
 - [x] Show whether the song is liked or not
 - [x] Showing stations
+- [x] Showing current volume
 - [x] How much time is left until the end (works even with an hour)
 - [x] Easier installation
 
