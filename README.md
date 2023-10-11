@@ -9,10 +9,15 @@
 - [x] Show whether the song is liked or not
 - [x] Showing stations
 - [x] How much time is left until the end (works even with an hour)
-- [ ] Easier installation
+- [x] Easier installation
 
 ### Installation
+* Download server from [latest release](https://github.com/dest4590/CloudRPC/releases/latest) (windows/linux), and run it
+* Install [tampermonkey](https://www.tampermonkey.net/ "Tampermonkey"), create a new script and copy everything from [plugin.js](https://raw.githubusercontent.com/dest4590/CloudRPC/main/plugin.js) into the new script, save and go to soundcloud
+* If you see the notification that CloudRPC is running, everything is working!
 
+
+#### Alternate install
 * Sure you install git and python: 
 * Enter this command: `git clone https://github.com/dest4590/CloudRPC.git && cd CloudRPC && pip install flask flask_cors pypresence && python server.py`
 * Install [tampermonkey](https://www.tampermonkey.net/ "Tampermonkey"), create a new script and copy everything from [plugin.js](https://raw.githubusercontent.com/dest4590/CloudRPC/main/plugin.js) into the new script, save and go to soundcloud
