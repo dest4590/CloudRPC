@@ -37,10 +37,20 @@ class CloudRPCServer:
 
         logger.info('RPC update request')
 
+        # print(data)
+
         try: 
             if data['playing']:
-                rpc.updateRPC(str(data['song']).split(' by ')[1], str(data['song']).split(' by ')[0], data['artwork'], data['link'], time.time() +  timeToSeconds(data['duration']) - timeToSeconds(data['current']), True, data['liked'], data['station'], str(data['volume']))
-            
+                if not data['playlist']:
+                    songTitle = str(data['song']).split(' by ')
+                    rpc.updateRPC(songTitle[0], songTitle[1], data['artwork'], data['link'], time.time() +  timeToSeconds(data['duration']) - timeToSeconds(data['current']), True, data['liked'], data['station'], str(data['volume']), data['playlist'])
+                
+                elif data['playlist']:
+                    title = str(data['song'])
+                    songName, playlistName = title[:title.find('in')], title[title.rfind('in')+2:]
+                    rpc.updateRPC('Playlist: ' + playlistName, songName, data['artwork'], data['link'], time.time() +  timeToSeconds(data['duration']) - timeToSeconds(data['current']), True, data['liked'], data['station'], str(data['volume']), data['playlist'])
+                
+
             else:
                 assets = cats.getRandom()
                 rpc.updateRPC(assets[0], "Doesn't listen to anything", assets[1], None, None, False, False, False, '0')

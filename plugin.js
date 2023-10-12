@@ -80,21 +80,26 @@
             }
         }
 
-        var title = document.title
-        var duration = document.querySelectorAll('div.playbackTimeline__duration span[aria-hidden="true"]')[0].innerHTML
-        var current = document.querySelectorAll('div.playbackTimeline__timePassed span[aria-hidden="true"]')[0].innerHTML
-        var artwork = document.querySelectorAll('div.playbackSoundBadge a div span')[0].style.backgroundImage
-        var link = document.querySelectorAll('div.playbackSoundBadge__title a')[0].href
+        var name = document.title
+        var duration = document.querySelector('div.playbackTimeline__duration span[aria-hidden="true"]').innerHTML
+        var current = document.querySelector('div.playbackTimeline__timePassed span[aria-hidden="true"]').innerHTML
+        var artwork = document.querySelector('div.playbackSoundBadge a div span').style.backgroundImage
+        var link = document.querySelector('div.playbackSoundBadge__title a').href
         var playbutton = document.querySelector('div.playControls__elements button.playControls__play').classList.contains("playing")
         var liked = document.querySelector('div.playbackSoundBadge__actions button.sc-button-like').classList.contains("sc-button-selected")
         var volume = document.querySelector('div.volume__sliderWrapper').getAttribute('aria-valuenow') * 100
         var station = false
+        var playlist = false
 
         if (link.includes("in_system_playlist")) {
             station = link.match(/in_system_playlist=([^&]+)/)[1]
         }
 
-        var data = JSON.stringify({"song": title, "duration": duration, "current": current, "artwork": artwork.replace(/^url\("|"\)$/g, '').replace(/120/g, '500'), "link": link, "playing": playbutton, "liked": liked, "station": station, "volume": volume})
+        if (link.includes("?in=")) {
+            playlist = link.match(/[?&]in=([^&]+)/)[1]
+        }
+
+        var data = JSON.stringify({"song": name, "duration": duration, "current": current, "artwork": artwork.replace(/^url\("|"\)$/g, '').replace(/120/g, '500'), "link": link, "playing": playbutton, "liked": liked, "station": station, "volume": volume, "playlist": playlist})
         xhr.send(data)
     }
 

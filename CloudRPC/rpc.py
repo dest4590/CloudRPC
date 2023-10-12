@@ -17,13 +17,17 @@ class CloudRPC:
         logger.info('Connected!')
 
 
-    def updateRPC(self, state: str, details: str, large_image: str, link: str, end: int, playing: bool, liked: bool, station, volume):
+    def updateRPC(self, state: str, details: str, large_image: str, link: str, end: int, playing: bool, liked: bool, station, volume, playlist):
         if playing:
-            if not station:
+            if not station and not playlist:
                 self.RPC.update(state = state, details=details, large_image=large_image, large_text=f'{volume}% volume', buttons=[{'label': 'Listen', 'url': link}, {'label': 'Github', 'url': 'https://github.com/dest4590/CloudRPC'}], end=end, small_image='cloudrpc_logo' if not liked else 'heart', small_text='CloudRPC' if not liked else 'Liked')
-            else:
+            
+            elif station:
                 self.RPC.update(state = state, details=details, large_image=large_image, large_text=f'{volume}% volume', buttons=[{'label': 'Listen', 'url': link}, {'label': 'Listen Station', 'url': 'https://soundcloud.com/discover/sets/track-stations:' + str(station).split('%3A')[1]}], end=end, small_image='station', small_text='Listening Station!' if not liked else 'Listening Station, Liked track!')
     
+            elif playlist:
+                self.RPC.update(state = state, details=details, large_image=large_image, large_text=f'{volume}% volume', buttons=[{'label': 'Listen', 'url': link}, {'label': 'Listen Playlist', 'url': 'https://soundcloud.com/' + str(playlist)}], end=end, small_image='playlist', small_text='Listening Playlist!' if not liked else 'Listening Playlist, Liked track!')
+     
 
         else:
             self.RPC.update(state = state, details=details, large_image=large_image, large_text='Cat', small_image='cloudrpc_logo', small_text='CloudRPC')
