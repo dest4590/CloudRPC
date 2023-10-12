@@ -53,7 +53,7 @@ class CloudRPCServer:
 
             else:
                 assets = cats.getRandom()
-                rpc.updateRPC(assets[0], "Doesn't listen to anything", assets[1], None, None, False, False, False, '0')
+                rpc.updateRPC(assets[0], "Doesn't listen to anything", assets[1], None, None, False, False, False, '0', False)
 
             return '200, Updated RPC'
 
