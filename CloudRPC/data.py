@@ -13,7 +13,7 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 # ---
 
-version = '1.0 ALPHA'
+version = '1.1'
 
 logo = f'''
    ____ _     ___  _   _ ____    ____  ____   ____ 

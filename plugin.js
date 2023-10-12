@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         CloudRPC
 // @namespace    http://github.com/dest4590/CloudRPC
-// @version      1.0
+// @version      1.1
 // @description  Add SoundCloud Discord Rich Presence
 // @author       dest4590
 // @match        https://soundcloud.com/*
-// @icon         https://www.google.com/s2/favicons?sz=256&domain=soundcloud.com
+// @icon         https://i.imgur.com/3CS7JNO.png
 // @grant        none
 // ==/UserScript==
 
@@ -98,7 +98,15 @@
         xhr.send(data)
     }
 
+    var applyFunction = function() {
+        var cloudrpc = window.CloudRPC = {}
+        cloudrpc.start = function () {window.setInterval(updateData, 10000)}
+        cloudrpc.stop = function () {window.clearInterval(sendInterval)}
+        cloudrpc.updateRPC = updateData
+    }
+
     setTimeout(function() {nofitication('CloudRPC loaded!', 'By <a href="https://github.com/dest4590/">dest4590</a>')}, 2000)
+    setTimeout(applyFunction, 2000)
 
     var sendInterval = window.setInterval(updateData, 10000)
     updateData()
