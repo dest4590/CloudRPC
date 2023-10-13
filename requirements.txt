@@ -1,3 +1,4 @@
 pypresence 
 flask 
 flask_cors
+rich

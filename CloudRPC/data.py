@@ -1,32 +1,22 @@
+from datetime import datetime
 import random
-import logging
 
-# Logger
-logger = logging.getLogger('CloudRPC')
-logger.setLevel(logging.INFO)
-
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO) 
-
-formatter = logging.Formatter('[%(name)s] (%(asctime)s) - %(message)s', datefmt='%d/%b/%Y %H:%M:%S')
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-# ---
-
-version = '1.1'
+version = '1.2 BETA'
 
 logo = f'''
    ____ _     ___  _   _ ____    ____  ____   ____ 
   / ___| |   / _ \| | | |  _ \  |  _ \|  _ \ / ___|
  | |   | |  | | | | | | | | | | | |_) | |_) | |    
  | |___| |__| |_| | |_| | |_| | |  _ <|  __/| |___ 
-  \____|_____\___/ \___/|____/  |_| \_\_|    \____|
-                                          {version}                               
+  \____|_____\___/ \___/|____/  |_| \_\_|    \____|                         
+                                       
 '''
+
+dateFormat = f'[green bold][{datetime.now().strftime("%d.%m.%Y")}][/] [violet bold]({datetime.now().strftime("%H:%M:%S")})[/]'
 
 class Cats:
     randomWords = [
-        'the developer loves cats',
+        'developer loves cats',
         'cats are the cutest',
         'eepy cat'
     ]

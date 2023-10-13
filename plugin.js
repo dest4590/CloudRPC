@@ -103,15 +103,16 @@
         xhr.send(data)
     }
 
-    var applyFunction = function() {
+    var applyFunctions = function() {
         var cloudrpc = window.CloudRPC = {}
         cloudrpc.start = function () {window.setInterval(updateData, 10000)}
         cloudrpc.stop = function () {window.clearInterval(sendInterval)}
+        cloudrpc.resetAttempts = function () {attempts = 0}
         cloudrpc.updateRPC = updateData
     }
 
     setTimeout(function() {nofitication('CloudRPC loaded!', 'By <a href="https://github.com/dest4590/">dest4590</a>')}, 2000)
-    setTimeout(applyFunction, 2000)
+    setTimeout(applyFunctions, 2000)
 
     var sendInterval = window.setInterval(updateData, 10000)
     updateData()

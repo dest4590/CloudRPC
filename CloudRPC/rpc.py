@@ -1,20 +1,24 @@
 from pypresence import Presence, DiscordNotFound
-from .data import logger
+from rich.console import Console
+from .data import dateFormat
+from rich import print
+
+console = Console()
 
 class CloudRPC:
     client_id = 1140224106009206864
     RPC = Presence(client_id)
 
     def connectRPC(self):
-        logger.info('Connecting to Discord...')
-        
-        try: 
-            self.RPC.connect()
-        except DiscordNotFound:
-            logger.error('Please sure you started discord!')
-            quit(0)
-
-        logger.info('Connected!')
+        with console.status('[red bold]Connecting to discord..', spinner='dots2') as status:
+            try: 
+                self.RPC.connect()
+                status.stop()
+                print('[bright_blue bold]Connected to discord!')
+            except DiscordNotFound:
+                status.stop()
+                print('[red bold]Please sure you started discord!')
+                quit(0)
 
 
     def updateRPC(self, state: str, details: str, large_image: str, link: str, end: int, playing: bool, liked: bool, station, volume, playlist):
@@ -27,10 +31,9 @@ class CloudRPC:
     
             elif playlist:
                 self.RPC.update(state = state, details=details, large_image=large_image, large_text=f'{volume}% volume', buttons=[{'label': 'Listen', 'url': link}, {'label': 'Listen Playlist', 'url': 'https://soundcloud.com/' + str(playlist)}], end=end, small_image='playlist', small_text='Listening Playlist!' if not liked else 'Listening Playlist, Liked track!')
-     
 
         else:
             self.RPC.update(state = state, details=details, large_image=large_image, large_text='Cat', small_image='cloudrpc_logo', small_text='CloudRPC')
 
 
-        logger.info('Updated RPC')
+        print(dateFormat + ' [bright_blue]Updated RPC')

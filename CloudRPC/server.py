@@ -1,16 +1,27 @@
-from flask import Flask, request
+from .data import Cats, logo, version, dateFormat
+from flask import Flask, request, send_file
+from rich.console import Console
 from flask_cors import CORS
 from .rpc import CloudRPC
-from .data import logger, Cats, logo, logging
-import time
+import flask.cli
+import logging
 import json
+import time
 
-print(logo)
+# Disable flask message
+flask.cli.show_server_banner = lambda *args: None
+
+console = Console(highlight=False)
+
+console.print('[green]' + logo + '[green]')
+
+console.print('[green bold]' + ' '*39 + version + '[green bold]')
 
 cats = Cats()
 
 rpc = CloudRPC()
 rpc.connectRPC()
+
 
 def timeToSeconds(time: str):
     time_parts = time.split(':')
@@ -29,13 +40,13 @@ class CloudRPCServer:
     CORS(app)
 
     # Disable logging
-    logging.getLogger('werkzeug').setLevel(logging.ERROR)
-
+    logging.getLogger('werkzeug').disabled = True
+    
     @app.route('/update', methods=['POST'])
     def update():
         data = json.loads(request.data.decode())
 
-        logger.info('RPC update request')
+        console.print(dateFormat + ' [blue]RPC update request')
 
         # print(data)
 
@@ -58,8 +69,12 @@ class CloudRPCServer:
             return '200, Updated RPC'
 
         except Exception as e:
-            logger.error('Error: ' + str(e))
+            print('[red bold]Error: ' + str(e))
             return 500, 'Error: ' + str(e)
+
+    @app.route('/script.js')
+    def script():
+        return send_file('plugin.js', 'text/javascript', as_attachment=True)
 
     def run(self):
         self.app.run('127.0.0.1', '9888', self.debug)
