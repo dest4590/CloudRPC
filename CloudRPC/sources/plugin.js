@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CloudRPC
 // @namespace    http://github.com/dest4590/CloudRPC
-// @version      1.1
+// @version      1.3
 // @description  Add SoundCloud Discord Rich Presence
 // @author       dest4590
 // @match        https://soundcloud.com/*
@@ -15,7 +15,7 @@
     console.log('CloudRPC by dest4590')
     console.log('Starting...')
 
-    var attempts = 0
+    window.CloudRPC_attempts = 0
 
     var nofitication = function(title, text) {
         var grtDiv = document.createElement("div")
@@ -63,11 +63,11 @@
         xhr.open("POST", url, true)
         xhr.setRequestHeader("Content-Type", "application/json")
         xhr.addEventListener("error", function(){
-            nofitication('CloudRPC Server error', "Error attempts: " + attempts.toString())
-            attempts++
-            console.log("Error attempts: " + attempts.toString())
+            nofitication('CloudRPC Server error', "Error attempts: " + window.CloudRPC_attempts.toString())
+            window.CloudRPC_attempts++
+            console.log("Error attempts: " + window.CloudRPC_attempts.toString())
 
-            if (attempts >= 5) {
+            if (window.CloudRPC_attempts >= 5) {
                 nofitication('CloudRPC fatal', "Shutting down the script")
                 console.log("The server failed to respond about 5 times, shutting down the script")
                 window.clearInterval(sendInterval)
@@ -107,7 +107,7 @@
         var cloudrpc = window.CloudRPC = {}
         cloudrpc.start = function () {window.setInterval(updateData, 10000)}
         cloudrpc.stop = function () {window.clearInterval(sendInterval)}
-        cloudrpc.resetAttempts = function () {attempts = 0}
+        cloudrpc.resetAttempts = function () {window.CloudRPC_attempts = 0}
         cloudrpc.updateRPC = updateData
     }
 

@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: monospace;
+    text-align: center;
+    transition: opacity 1s linear;
+}
+
+#info p {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

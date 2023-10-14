@@ -58,3 +58,10 @@ Update: `git reset --hard HEAD && git clean -f -d && git pull`, also you need to
 By using this app you take responsibility for your SoundCloud/Discord account for yourself
 
 You can't get banned for nothing (my program doesn't violate Discord and SoundCloud TOS)
+
+<details>
+<summary>Codenames</summary>
+
+* 1.3 - CloudLink
+
+</details>

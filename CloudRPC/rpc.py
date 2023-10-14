@@ -1,6 +1,6 @@
 from pypresence import Presence, DiscordNotFound
 from rich.console import Console
-from .data import dateFormat
+from .helper import dateFormat
 from rich import print
 
 console = Console()
@@ -14,10 +14,10 @@ class CloudRPC:
             try: 
                 self.RPC.connect()
                 status.stop()
-                print('[bright_blue bold]Connected to discord!')
+                print(':white_check_mark: [bright_blue bold]Connected to discord!')
             except DiscordNotFound:
                 status.stop()
-                print('[red bold]Please sure you started discord!')
+                print('[red bold]Please sure you started discord![/]')
                 quit(0)
 
 

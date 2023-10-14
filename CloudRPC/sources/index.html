@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link href="http://127.0.0.1:9888/style" rel="stylesheet">
+    <title>CloudRPC {{ version }}</title>
+</head>
+
+<script>
+function onLoad() {
+    document.body.style.opacity = 1;
+}
+</script>
+
+<body onload="onLoad()" style="opacity: 0;">
+    <h1>CloudRPC WebPanel</h1>
+    
+    </br><span>Info:</span>
+    <div id="info">
+        <p><a href="https://github.com/dest4590/CloudRPC">CloudRPC</a> <span style="color: deepskyblue;">{{ version }}</span> <span style="color: gray;">({{ codename }})</span></p>
+        <p>Started: {{ startTime }}</p>
+    </div>
+</body>
+</html>
