@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict'
 
     console.log('CloudRPC by dest4590')
@@ -17,7 +17,7 @@
 
     window.CloudRPC_attempts = 0
 
-    var nofitication = function(title, text) {
+    var nofitication = function (title, text) {
         var grtDiv = document.createElement("div")
         grtDiv.innerHTML = `
             <div id="gritter-notice-wrapper" class="top-right" bis_skin_checked="1" style="opacity: 0">
@@ -53,16 +53,16 @@
 
         setTimeout(fadeOutElement, 2000)
 
-        setTimeout(function () {grtDiv.remove()}, 100 + 3500)
+        setTimeout(function () { grtDiv.remove() }, 100 + 3500)
     }
 
-    var updateData = function() {
+    var updateData = function () {
         var xhr = new XMLHttpRequest()
         console.log("Send info to server")
         var url = "http://localhost:9888/update"
         xhr.open("POST", url, true)
         xhr.setRequestHeader("Content-Type", "application/json")
-        xhr.addEventListener("error", function(){
+        xhr.addEventListener("error", function () {
             nofitication('CloudRPC Server error', "Error attempts: " + window.CloudRPC_attempts.toString())
             window.CloudRPC_attempts++
             console.log("Error attempts: " + window.CloudRPC_attempts.toString())
@@ -76,7 +76,7 @@
 
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
-              console.log("Server response: " + xhr.response)
+                console.log("Server response: " + xhr.response)
             }
         }
 
@@ -99,19 +99,19 @@
             playlist = link.match(/[?&]in=([^&]+)/)[1]
         }
 
-        var data = JSON.stringify({"song": name, "duration": duration, "current": current, "artwork": artwork.replace(/^url\("|"\)$/g, '').replace(/120/g, '500'), "link": link, "playing": playbutton, "liked": liked, "station": station, "volume": volume, "playlist": playlist})
+        var data = JSON.stringify({ "song": name, "duration": duration, "current": current, "artwork": artwork.replace(/^url\("|"\)$/g, '').replace(/120/g, '500'), "link": link, "playing": playbutton, "liked": liked, "station": station, "volume": volume, "playlist": playlist })
         xhr.send(data)
     }
 
-    var applyFunctions = function() {
+    var applyFunctions = function () {
         var cloudrpc = window.CloudRPC = {}
-        cloudrpc.start = function () {window.setInterval(updateData, 10000)}
-        cloudrpc.stop = function () {window.clearInterval(sendInterval)}
-        cloudrpc.resetAttempts = function () {window.CloudRPC_attempts = 0}
+        cloudrpc.start = function () { window.setInterval(updateData, 10000) }
+        cloudrpc.stop = function () { window.clearInterval(sendInterval) }
+        cloudrpc.resetAttempts = function () { window.CloudRPC_attempts = 0 }
         cloudrpc.updateRPC = updateData
     }
 
-    setTimeout(function() {nofitication('CloudRPC loaded!', 'By <a href="https://github.com/dest4590/">dest4590</a>')}, 2000)
+    setTimeout(function () { nofitication('CloudRPC loaded!', 'By <a href="https://github.com/dest4590/">dest4590</a>') }, 2000)
     setTimeout(applyFunctions, 2000)
 
     var sendInterval = window.setInterval(updateData, 10000)
